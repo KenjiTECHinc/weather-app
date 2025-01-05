@@ -1,4 +1,4 @@
-# weather-app
+# Weather App
 A simple weather app that can display the current temperature, weather condition, humidity, and windspeed of a city using OpenWeatherMap's API.
 
 ## Technologies Used
