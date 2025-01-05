@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #222;
+}
+
+.card {
+    width: 90%;
+    max-width: 470px;
+    background: linear-gradient(135deg, #f9dc5c, #fcefb4);
+    color: #fff;
+    margin: 100px auto 0;
+    border-radius: 30px;
+    padding: 40px 35px;
+    text-align: center;
+
+}
+
+.search {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search input {
+    border: 0;
+    outline: 0;
+    background: #ebfffc;
+    color: #555;
+    padding: 10px 25px;
+    height: 60px;
+    border-radius: 30px;
+    flex: 1;
+    margin-right: 16px;
+    font-size: 18px;
+}
+
+.search button {
+    width: 64px;
+    height: 64px;
+    border: 0;
+    outline: 0;
+    background: #ebfffc;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.search-icon {
+    width: 32px;
+    height: 32px;
+}
+
+.weather-icon {
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+}
+
+.weather {
+    display: none;
+}
+
+.weather p {
+    font-size: 20px;
+    color: #3a3c3d;
+    margin-top: 10px;
+}
+
+.weather h1 {
+    font-size: 80px;
+    font-weight: 600;
+    color: #3a3c3d;
+}
+
+.weather h2 {
+    font-size: 30px;
+    font-weight: 400;
+    margin-top: -10px;
+    color: #3a3c3d;
+}
+
+.details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-top: 50px;
+}
+
+.column-weather {
+    display: flex;
+    flex-direction: auto;
+    align-items: center;
+    text-align: left;
+}
+
+.column-weather img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.humidity,
+.wind {
+    color: #3a3c3d;
+    font-size: 28px;
+    font-weight: 400;
+    margin-top: -6px;
+}
+
+.humidity-label,
+.wind-label {
+    color: #3a3c3d;
+    font-size: 16px;
+}
+
+.error {
+    display: none;
+    text-align: left;
+    color: #3a3c3d;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
