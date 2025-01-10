@@ -4,7 +4,7 @@ A simple weather app that can display the current temperature, weather condition
 ## Technologies Used
 The project is built using these technologies:
 - JavaScript: Used for scripting the API calls to obtain the weather data
-  
+
 [![Tech Stack](https://skillicons.dev/icons?i=js,html,css)]()
 
 The icons in this project are mainly taken from [@bearfruitideas](https://www.freepik.com/author/bearfruitideas/icons).
