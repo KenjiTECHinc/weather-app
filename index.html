@@ -1,48 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div class="card">
-    <div class="search">
-        <input type="text" placeholder="enter city name" spellcheck="false">
-        <button> <img class= "search-icon" src="assets/search.png" alt="search button"></button>
-    </div>
-    <div class="error">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="card">
+      <div class="search">
+        <input type="text" placeholder="enter city name" spellcheck="false" />
+        <button>
+          <img
+            class="search-icon"
+            src="assets/search.png"
+            alt="search button"
+          />
+        </button>
+      </div>
+      <div class="error">
         <p>Invalid city name. Please try again.</p>
-    </div>
-    <div class="weather">
-        <img src="assets/rain.png" alt="rain" class="weather-icon">
+      </div>
+      <div class="weather">
+        <img src="assets/rain.png" alt="rain" class="weather-icon" />
         <h1 class="temp">30°C</h1>
         <h2 class="city">Bangkok</h2>
         <p class="condition">Rain</p>
         <div class="details">
-            <div class="column-weather">
-                <img src="assets/humidity.png" alt="humidity">
-                <div>
-                    <p class="humidity">30%</p>
-                    <p class="humidity-label">Humidity</p>
-
-                </div>  
+          <div class="column-weather">
+            <img src="assets/humidity.png" alt="humidity" />
+            <div>
+              <p class="humidity">30%</p>
+              <p class="humidity-label">Humidity</p>
             </div>
+          </div>
 
-            <div class="column-weather">
-                <img src="assets/windspeed.png" alt="wind speed">
-                <div>
-                    <p class="wind">1.5 km/h</p>
-                    <p class="wind-label">Wind Speed</p>
-                    
-                </div>  
+          <div class="column-weather">
+            <img src="assets/windspeed.png" alt="wind speed" />
+            <div>
+              <p class="wind">1.5 km/h</p>
+              <p class="wind-label">Wind Speed</p>
             </div>
-
+          </div>
         </div>
+        <div class="aqi-container">
+          <div class="aqi-big">
+            <div>
+              <p class="aqi-value">50</p>
+              <p class="aqi-label">AQI</p>
+            </div>
+          </div>
+          <div class="aqi">
+            <div class="aqi-column">
+              <div>
+                <p class="pm-value">30 μg/m3</p>
+                <p class="pm-label">PM2.5</p>
+              </div>
+            </div>
+            <div class="aqi-column">
+              <div>
+                <p class="pm10-value">30 μg/m3</p>
+                <p class="pm10-label">PM10</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
 
-<script src="main.js"></script>
-</body>
+    <script type="module" src="main.js"></script>
+  </body>
 </html>

@@ -31,7 +31,7 @@ body {
 .search input {
     border: 0;
     outline: 0;
-    background: #ebfffc;
+    background: #fffcef;
     color: #555;
     padding: 10px 25px;
     height: 60px;
@@ -46,7 +46,7 @@ body {
     height: 64px;
     border: 0;
     outline: 0;
-    background: #ebfffc;
+    background: #fffcef;
     border-radius: 50%;
     cursor: pointer;
 }
@@ -67,7 +67,6 @@ body {
 }
 
 .weather p {
-    font-size: 20px;
     color: #3a3c3d;
     margin-top: 10px;
 }
@@ -127,4 +126,75 @@ body {
     font-size: 14px;
     margin-top: 10px;
     margin-left: 10px;
+}
+
+.aqi-container{
+    background-color: #fffcef;
+    border-radius: 20px;
+    margin-top: 30px;
+    padding: 10px;
+    justify-content: center;
+}
+
+.aqi-container h1{
+    color: #3a3c3d;
+    font-weight: 400;
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+.aqi-container img{
+    width: 40px;
+    height: 40px;
+}
+
+.aqi{
+    display:flex;
+    align-items: center;
+    padding: 0 20px;
+    justify-content: space-evenly;
+}
+
+.aqi-big{
+    align-items: center;
+    flex-direction: auto;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.aqi-column{
+    display: flex;
+    align-items: center;
+    flex-direction: auto;
+    text-align: center;
+}
+
+.aqi-column img{
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.aqi-value {
+    color: #3a3c3d;
+    font-size: 64px;
+    font-weight: 400;
+    margin-top: -6px;
+}
+
+.pm-value, .pm10-value{
+    color: #3a3c3d;
+    font-size: 24px;
+    font-weight: 300;
+    margin-top: -6px;
+}
+
+.aqi-label {
+    color: #3a3c3d;
+    font-size: 24px;
+}
+
+.pm-label, .pm10-label{
+    color: #3a3c3d;
+    font-size: 16px;
 }
