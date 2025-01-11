@@ -16,6 +16,7 @@ async function getWeatherData(city) {
         return;
     }
     else {
+        document.querySelector(".error").style.display = "none";
         var weatherData = await response.json();
 
         const geoResponse = await fetch(geoUrl + `&q=${city}` + `&appid=${apiKey}`);
