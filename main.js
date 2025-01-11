@@ -1,11 +1,14 @@
 const apiKey = WEATHER_API_KEY;
-const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric";
+const mainApiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric";
+const geoUrl = "http://api.openweathermap.org/geo/1.0/direct?limit=1";
+const aqiUrl = "http://api.openweathermap.org/data/2.5/air_pollution?";
 const searchBox = document.querySelector(".search input");
 const searchButton = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
 
 async function getWeatherData(city) {
-    const response = await fetch(apiUrl + `&q=${city}` + `&appid=${apiKey}`);
+    const response = await fetch(mainApiUrl + `&q=${city}` + `&appid=${apiKey}`);
+    console.log(response.status)
 
     if (response.status === 404) {
         document.querySelector(".error").style.display = "block";
@@ -13,43 +16,88 @@ async function getWeatherData(city) {
         return;
     }
     else {
+        document.querySelector(".error").style.display = "none";
+        var weatherData = await response.json();
 
-        var data = await response.json();
-        //console.log(data);
+        const geoResponse = await fetch(geoUrl + `&q=${city}` + `&appid=${apiKey}`);
+        var geoData = await geoResponse.json();
 
-        document.querySelector(".city").innerHTML = data.name;
-        document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
-        document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
-        document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
-        document.querySelector(".condition").innerHTML = data.weather[0].main;
+        var lat = geoData[0].lat;
+        var lon = geoData[0].lon;
+        console.log(lat, lon);
 
-        if (data.weather[0].main === "Clouds") {
-            weatherIcon.src = "assets/cloudy.png";
-        }
-        else if (data.weather[0].main === "Rain") {
-            weatherIcon.src = "assets/rain.png";
-        }
-        else if (data.weather[0].main === "Clear") {
-            weatherIcon.src = "assets/sunny.png";
-        }
-        else if (data.weather[0].main === "Snow") {
-            weatherIcon.src = "assets/snow.png";
-        }
-        else if (data.weather[0].main === "Mist") {
-            weatherIcon.src = "assets/mist.png";
-        }
-        else if (data.weather[0].main === "Thunderstorm") {
-            weatherIcon.src = "assets/thunderstorm.png";
-        }
-        else if (data.weather[0].main === "Drizzle") {
-            weatherIcon.src = "assets/drizzle.png";
-        }
+        const aqiData = await fetch(aqiUrl + `lat=${lat}&lon=${lon}` + `&appid=${apiKey}`);
+        updateWeatherInfo(weatherData);
+        updateAqiInfo(aqiData);
 
-        document.querySelector(".weather").style.display = "block";
-        return data;
     }
 }
 
 searchButton.addEventListener("click", function () {
     getWeatherData(searchBox.value);
 });
+
+async function updateWeatherInfo(data) {
+    console.log(data);
+
+    document.querySelector(".city").innerHTML = data.name;
+    document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
+    document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+    document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
+    document.querySelector(".condition").innerHTML = data.weather[0].main;
+
+    if (data.weather[0].id >= 801 && data.weather[0].id < 805) {
+        weatherIcon.src = "assets/cloudy.png";
+    }
+    else if (data.weather[0].id >= 500 && data.weather[0].id < 532) {
+        weatherIcon.src = "assets/rain.png";
+    }
+    else if (data.weather[0].main === "Clear") {
+        weatherIcon.src = "assets/sunny.png";
+    }
+    else if (data.weather[0].id >= 600 && data.weather[0].id < 623) {
+        weatherIcon.src = "assets/snow.png";
+    }
+    else if (data.weather[0].id >= 700 && data.weather[0].id < 781) {
+        weatherIcon.src = "assets/mist.png";
+    }
+    else if(data.weather[0].main === "Tornado") {
+        weatherIcon.src = "assets/tornado.png";
+    }
+    else if (data.weather[0].id >= 200 && data.weather[0].id < 233) {
+        weatherIcon.src = "assets/thunderstorm.png";
+    }
+    else if (data.weather[0].id >= 300 && data.weather[0].id < 322) {
+        weatherIcon.src = "assets/drizzle.png";
+    }
+
+    document.querySelector(".weather").style.display = "block";
+    return data;
+}
+
+async function updateAqiInfo(aqiData) {
+    aqiData = await aqiData.json();
+
+    document.querySelector(".aqi-value").innerHTML = aqiData.list[0].main.aqi;
+    document.querySelector(".pm-value").innerHTML = aqiData.list[0].components.pm2_5 + " μg/m3";
+    document.querySelector(".pm10-value").innerHTML = aqiData.list[0].components.pm10 + " μg/m3";
+    
+    switch (aqiData.list[0].main.aqi) {
+        case 1:
+            document.querySelector(".aqi-value").style.color = "#5df56a";
+            break;
+        case 2:
+            document.querySelector(".aqi-value").style.color = "#f9dc5c";
+            break;
+        case 3:
+            document.querySelector(".aqi-value").style.color = "#f58b5d";
+            break;
+        case 4:
+            document.querySelector(".aqi-value").style.color = "#f55d5d";
+            break;
+        case 5:
+            document.querySelector(".aqi-value").style.color = "#9c388e";
+            break;
+    }
+    return aqiData;
+}
