@@ -46,25 +46,28 @@ async function updateWeatherInfo(data) {
     document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
     document.querySelector(".condition").innerHTML = data.weather[0].main;
 
-    if (data.weather[0].main === "Clouds") {
+    if (data.weather[0].id >= 801 && data.weather[0].id < 805) {
         weatherIcon.src = "assets/cloudy.png";
     }
-    else if (data.weather[0].main === "Rain") {
+    else if (data.weather[0].id >= 500 && data.weather[0].id < 532) {
         weatherIcon.src = "assets/rain.png";
     }
     else if (data.weather[0].main === "Clear") {
         weatherIcon.src = "assets/sunny.png";
     }
-    else if (data.weather[0].main === "Snow") {
+    else if (data.weather[0].id >= 600 && data.weather[0].id < 623) {
         weatherIcon.src = "assets/snow.png";
     }
-    else if (data.weather[0].main === "Mist") {
+    else if (data.weather[0].id >= 700 && data.weather[0].id < 781) {
         weatherIcon.src = "assets/mist.png";
     }
-    else if (data.weather[0].main === "Thunderstorm") {
+    else if(data.weather[0].main === "Tornado") {
+        weatherIcon.src = "assets/tornado.png";
+    }
+    else if (data.weather[0].id >= 200 && data.weather[0].id < 233) {
         weatherIcon.src = "assets/thunderstorm.png";
     }
-    else if (data.weather[0].main === "Drizzle") {
+    else if (data.weather[0].id >= 300 && data.weather[0].id < 322) {
         weatherIcon.src = "assets/drizzle.png";
     }
 
