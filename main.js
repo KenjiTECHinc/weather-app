@@ -7,23 +7,24 @@ const searchButton = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
 
 async function getWeatherData(city) {
-    const response = await fetch(geoUrl + `&q=${city}` + `&appid=${apiKey}`);
-    //const response = await fetch(mainApiUrl + `&q=${city}` + `&appid=${apiKey}`);
-    console.log("success function call.")
+    const response = await fetch(mainApiUrl + `&q=${city}` + `&appid=${apiKey}`);
+    console.log(response.status)
+
     if (response.status === 404) {
         document.querySelector(".error").style.display = "block";
         document.querySelector(".weather").style.display = "none";
         return;
     }
     else {
+        var weatherData = await response.json();
 
-        var data = await response.json();
-        console.log(data);
-        var lat = data[0].lat;
-        var lon = data[0].lon;
+        const geoResponse = await fetch(geoUrl + `&q=${city}` + `&appid=${apiKey}`);
+        var geoData = await geoResponse.json();
+
+        var lat = geoData[0].lat;
+        var lon = geoData[0].lon;
         console.log(lat, lon);
 
-        var weatherData = await fetch(mainApiUrl + `&q=${city}` + `&appid=${apiKey}`);
         const aqiData = await fetch(aqiUrl + `lat=${lat}&lon=${lon}` + `&appid=${apiKey}`);
         updateWeatherInfo(weatherData);
         updateAqiInfo(aqiData);
@@ -36,7 +37,6 @@ searchButton.addEventListener("click", function () {
 });
 
 async function updateWeatherInfo(data) {
-    data = await data.json();
     console.log(data);
 
     document.querySelector(".city").innerHTML = data.name;
